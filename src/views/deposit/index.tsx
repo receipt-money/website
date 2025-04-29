@@ -1,7 +1,10 @@
 import { FC, useState, useEffect, ChangeEvent, useCallback } from 'react';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { Transaction, PublicKey } from '@solana/web3.js';
-import { Program } from '@coral-xyz/anchor';
+import { Program, web3 } from '@coral-xyz/anchor';
+import { AnchorProvider } from '@coral-xyz/anchor';
+import type { Wallet } from '@coral-xyz/anchor/dist/cjs/provider';
+import type { Idl } from '@coral-xyz/anchor';
 import { BN } from 'bn.js';
 import Image from 'next/image';
 import { ToastContainer, toast } from 'react-toastify';
@@ -198,8 +201,29 @@ export const DepositView: FC = () => {
         return;
       }
 
-      // Create program instance
-      const program = new Program(idl as any, PROGRAM_ID);
+      // Create a wallet adapter compatible with AnchorProvider
+      const anchorWallet: Wallet = {
+        publicKey: publicKey,
+        signTransaction: signTransaction!,
+        signAllTransactions: async (txs) => {
+          // Process transactions one at a time
+          const signedTxs = [];
+          for (const tx of txs) {
+            signedTxs.push(await signTransaction!(tx));
+          }
+          return signedTxs;
+        }
+      };
+      
+      // Create provider instance
+      const provider = new AnchorProvider(
+        connection, 
+        anchorWallet,
+        { commitment: 'confirmed' }
+      );
+      
+      // Create program instance with provider
+      const program = new Program(idl as Idl, provider);
       
       // Amount with correct decimals
       const amount = parseFloat(lockAmount);
@@ -210,7 +234,7 @@ export const DepositView: FC = () => {
         wallet: publicKey,
         program,
         tokenMint: selectedToken.mint,
-        amount,
+        amount, // Keep as a regular number, the function will convert it
         decimals: selectedToken.decimals,
         priorityFee: true,
       });
