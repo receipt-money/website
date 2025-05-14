@@ -9,7 +9,7 @@ const Home: NextPage = (props) => {
         <title>receipt.money</title>
         <meta
           name="description"
-          content="Digital Receipts on Solana"
+          content="Liquid Restaking and dual-yield protocol on Solana"
         />
       </Head>
       <HomeView />

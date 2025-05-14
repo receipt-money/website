@@ -55,7 +55,7 @@ export const Footer: FC = () => {
                                 </a>
                             </div>
                             <div className="mb-6 m-1 sm:text-left place-items-start items-start font-normal tracking-tight text-secondary">
-                                        © 2023 Solana Foundation
+                                        {/* © 2023 Solana Foundation removed as per request */}
                             </div>
                         </div>
 

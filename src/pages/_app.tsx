@@ -13,8 +13,8 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <>
           <Head>
-            <title>Receipt Money | Digital Receipts on Solana</title>
-            <meta name="description" content="Digital receipts on Solana blockchain" />
+            <title>Receipt Money | Liquid Restaking and dual-yield protocol on Solana</title>
+            <meta name="description" content="Liquid Restaking and dual-yield protocol on Solana blockchain" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
 
