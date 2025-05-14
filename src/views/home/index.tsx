@@ -49,7 +49,7 @@ export const HomeView: FC = ({ }) => {
             Receipt Money solves this by issuing liquid CR tokens while your assets remain locked and actively earning
           </span>
         </p>
-        <div className="flex items-center space-x-4 text-lg font-semibold text-slate-200">
+        <div className="flex items-center space-x-4 text-lg font-semibold text-slate-200 mt-11">
           <span>Deposit Your Assets</span>
           <span className="text-2xl text-green-400">→</span>
           <span>Mint $CR Tokens</span>

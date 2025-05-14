@@ -16,7 +16,7 @@ export const AppBar: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   
   return (
-    <div className="navbar flex h-20 flex-row md:mb-2 shadow-lg text-neutral-content border-b border-zinc-600">
+    <div className="navbar flex h-20 flex-row md:mb-2 shadow-lg text-neutral-content border-b border-zinc-600 bg-transparent backdrop-blur-md bg-opacity-60">
       <div className="navbar-start align-items-center">
         <div className="hidden sm:inline w-22 h-22 md:p-2 ml-10">
           <Link href="/" className="flex items-center">
@@ -30,11 +30,14 @@ export const AppBar: React.FC = () => {
       <div className="navbar-end">
         <div className="hidden md:inline-flex align-items-center justify-items gap-6">
           {/* Navigation links */}
-          <Link href="/" className="btn btn-ghost btn-sm rounded-btn text-lg">
-            Home
+          <Link href="https://receipt-money.gitbook.io/receipt.money" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm rounded-btn text-lg">
+            Docs
           </Link>
           <Link href="/deposit" className="btn btn-ghost btn-sm rounded-btn text-lg">
             Deposit
+          </Link>
+          <Link href="https://x.com/cryptorcpts" target="_blank" rel="noopener noreferrer" className="btn btn-ghost p-0 m-0 rounded-full flex items-center justify-center w-8 h-8 min-w-0 min-h-0" aria-label="X Profile">
+            <Image src="/X_logo.svg" alt="X logo" width={24} height={24} className="" />
           </Link>
           <WalletMultiButtonDynamic className="bg-gradient-to-r from-green-400 to-purple-500 text-white font-bold btn-sm rounded-btn text-lg mr-6" />
         </div>
